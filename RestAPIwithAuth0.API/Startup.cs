@@ -83,7 +83,7 @@ namespace RestAPIwithAuth0.API
                     {
                         Implicit = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri("your-auth-url", UriKind.Relative),
+                            AuthorizationUrl = new Uri("herotech.us.auth0.com/oauth/token", UriKind.Relative),
                             Scopes = new Dictionary<string, string>
                             {
                                 { "readAccess", "Access read operations" },
@@ -121,10 +121,10 @@ namespace RestAPIwithAuth0.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestAPIService");
-                c.OAuthClientId("cleint-id");
-                c.OAuthClientSecret("client-secret");
+                c.OAuthClientId("qKIFpG5g66hlXIoyM5tr7W2jBEKx4Ji6");
+                c.OAuthClientSecret("5iAhWKrBvOwYSlmVTUnvvc4jYXbi1fr431jS0wHYPHeBatw3omyQegI8q6mauoqC");
                 c.OAuthRealm("client-realm");
-                c.OAuthAppName("OAuth-app");
+                c.OAuthAppName("EmployeesDirectory");
 
 
                 c.OAuthUseBasicAuthenticationWithAccessCodeGrant();

@@ -52,7 +52,7 @@ namespace RestAPIwithAuth0.API.Controllers
 
         }
 
-        [HttpGet("CreateEmployee")]
+        [HttpPut("CreateEmployee")]
         [ProducesResponseType(typeof(APIResponse<EmployeesResponseModel>), 200)]
         [ProducesResponseType(typeof(APIResponse), 400)]
         //[Authorize(Roles = Roles.Admin)]
