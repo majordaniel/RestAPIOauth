@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPIwithAuth0\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj": {}
+    "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPI and Auth0\\RestAPIwithAuth0V2\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPIwithAuth0\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj": {
+    "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPI and Auth0\\RestAPIwithAuth0V2\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPIwithAuth0\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj",
+        "projectUniqueName": "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPI and Auth0\\RestAPIwithAuth0V2\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj",
         "projectName": "RestAPIwithAuth0.Data",
-        "projectPath": "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPIwithAuth0\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj",
+        "projectPath": "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPI and Auth0\\RestAPIwithAuth0V2\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj",
         "packagesPath": "C:\\Users\\DANIEL OGWU\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPIwithAuth0\\RestAPIwithAuth0.Data\\obj\\",
+        "outputPath": "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPI and Auth0\\RestAPIwithAuth0V2\\RestAPIwithAuth0.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

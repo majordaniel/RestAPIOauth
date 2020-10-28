@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "j00re+ZmRwuRdoW72wtXAzPAlceemRwkzJo+d6dWekom9cbbkc2hpTT+bab7KrRHvLOfWrtDOpQHnolFtGd8mQ==",
+  "dgSpecHash": "mIFJbXEQfWKXZEyVr53jnWpJSZqvmpdcsRfUOvPs3+kM+GDaN1bQpwCb4JFSKfzDEWFS7/twrUjONb4hUcTFLA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPIwithAuth0\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj",
+  "projectFilePath": "C:\\Users\\DANIEL OGWU\\Desktop\\RestAPI and Auth0\\RestAPIwithAuth0V2\\RestAPIwithAuth0.Data\\RestAPIwithAuth0.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DANIEL OGWU\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\DANIEL OGWU\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
