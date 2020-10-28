@@ -107,10 +107,10 @@ namespace RestAPIwithAuth0.API
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                // options.Authority = $"https://{Configuration["Auth0:Domain"]}/";
-                options.Authority = "https://herotechng.us.auth0.com/";
-                // options.Audience = Configuration["Auth0:Audience"];
-                options.Audience = "https://localhost:44386/";
+                options.Authority = $"https://{Configuration["Auth0:Domain"]}/";
+                // options.Authority = "https://herotechng.us.auth0.com/";
+                options.Audience = Configuration["Auth0:Audience"];
+                // options.Audience = "https://localhost:44386/";
             });
 
 
@@ -130,14 +130,23 @@ namespace RestAPIwithAuth0.API
                     {
                         Implicit = new OpenApiOAuthFlow()
                         {
-                            // AuthorizationUrl = new Uri($"https://{Configuration["Auth0:Domain"]}/authorize?audience={System.Web.HttpUtility.UrlEncode(Configuration["Auth0:Audience"])}", UriKind.Absolute),
-                            AuthorizationUrl = new Uri("https://herotechng.us.auth0.com/authorize?audience=https://localhost:44386/", UriKind.Absolute),
+                            //  Configuration["ConnectionStrings:DefaultConnection"]
+                            //  AuthorizationUrl = new Uri($"{Configuration["Auth0:Domain"]}/authorize?audience={System.Web.HttpUtility.UrlEncode(Configuration["Auth0:Audience"])}", UriKind.Absolute),
+                            AuthorizationUrl = new Uri($"https://{Configuration["Auth0:Domain"]}/authorize?audience={System.Web.HttpUtility.UrlEncode(Configuration["Auth0:Audience"])}", UriKind.Absolute),
+                            // AuthorizationUrl = new Uri("https://herotechng.us.auth0.com/authorize?audience=https://localhost:44386/", UriKind.Absolute),
+
+                            Scopes = new Dictionary<string, string>
+                                            {
+                                                { "readAccess", "Access read operations" },
+                                                { "writeAccess", "Access write operations" }
+                                            }
+
                         },
-                        ClientCredentials = new OpenApiOAuthFlow()
-                        {
-                            //TokenUrl = new Uri($"https://{Configuration["Auth0:Domain"]}/oauth/token?audience={System.Web.HttpUtility.UrlEncode(Configuration["Auth0:Audience"])}", UriKind.Absolute),
-                            TokenUrl = new Uri("https://herotechng.us.auth0.com/oauth/token?audience=https://localhost:44386/", UriKind.Absolute),
-                        },
+                        //ClientCredentials = new OpenApiOAuthFlow()
+                        //{
+                        //    TokenUrl = new Uri($"https://{Configuration["Auth0:Domain"]}/oauth/token?audience={System.Web.HttpUtility.UrlEncode(Configuration["Auth0:Audience"])}", UriKind.Absolute),
+                        //   // TokenUrl = new Uri("https://herotechng.us.auth0.com/oauth/token?audience=https://localhost:44386/", UriKind.Absolute),
+                        //},
                     },
                 });
 
@@ -194,9 +203,14 @@ namespace RestAPIwithAuth0.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestAPIService");
-                // c.OAuthClientId(Configuration["Swagger:ClientId"]);
-                c.OAuthClientId("nNouWDtODw50tjcg2yvaZN80XliNDJbh");
-                c.OAuthClientSecret("iy1TzVew_N5PrkeyeFBNXq_GdNli94HeiTYIy2XRKCvLlM1WlIttGp9i4jkixrmg");
+
+                //  c.OAuthClientId(Configuration["Swagger:ClientId"]);
+
+                // c.OAuthClientId("nNouWDtODw50tjcg2yvaZN80XliNDJbh");
+                // c.OAuthClientSecret("iy1TzVew_N5PrkeyeFBNXq_GdNli94HeiTYIy2XRKCvLlM1WlIttGp9i4jkixrmg");
+
+                c.OAuthClientId($"{Configuration["Auth0:ClientId"]}");
+                c.OAuthClientSecret($"{Configuration["Auth0:ClientSecret"]}");
 
                 c.InjectJavascript("/Auth0.js");
             });
