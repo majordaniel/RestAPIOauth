@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestAPIwithAuth0.Business.Helpers;
 using RestAPIwithAuth0.Business.Interfaces;
@@ -36,6 +37,7 @@ namespace RestAPIwithAuth0.API.Controllers
         [HttpGet("GetAllEmployees")]
         [ProducesResponseType(typeof(APIResponse<List<EmployeesResponseModel>>), 200)]
         [ProducesResponseType(typeof(APIResponse), 400)]
+        [Authorize]
         //[Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> GetAllEmplyees()
         {

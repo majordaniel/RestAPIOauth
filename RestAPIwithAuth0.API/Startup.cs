@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -73,31 +74,51 @@ namespace RestAPIwithAuth0.API
 
             services.AddAutoMapper(typeof(AutomapperProfile));
 
-            services.AddSwaggerGen(c =>
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "RESTAPI", Version = "v1" });
+            //    c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+            //    {
+            //        Type = SecuritySchemeType.OAuth2,
+            //        Flows = new OpenApiOAuthFlows
+            //        {
+            //            Implicit = new OpenApiOAuthFlow
+            //            {
+            //                AuthorizationUrl = new Uri("herotech.us.auth0.com/oauth/token", UriKind.Relative),
+            //                Scopes = new Dictionary<string, string>
+            //                {
+            //                    { "readAccess", "Access read operations" },
+            //                    { "writeAccess", "Access write operations" }
+            //                }
+            //            }
+            //        }
+            //    });
+
+            //    c.OperationFilter<OAuth2OperationFilter>();
+
+            //    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //    //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            //    //c.IncludeXmlComments(xmlPath);
+            //});
+
+            // 1. Add Authentication Services
+            services.AddAuthentication(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RESTAPI", Version = "v1" });
-                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://herotech.us.auth0.com/";
+                options.Audience = "https://localhost:44386/";
+            });
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
-                    Type = SecuritySchemeType.OAuth2,
-                    Flows = new OpenApiOAuthFlows
-                    {
-                        Implicit = new OpenApiOAuthFlow
-                        {
-                            AuthorizationUrl = new Uri("herotech.us.auth0.com/oauth/token", UriKind.Relative),
-                            Scopes = new Dictionary<string, string>
-                            {
-                                { "readAccess", "Access read operations" },
-                                { "writeAccess", "Access write operations" }
-                            }
-                        }
-                    }
+                    Title = "Place Info Service API",
+                    Version = "v2",
+                    Description = "Sample service for Learner",
                 });
-
-                c.OperationFilter<OAuth2OperationFilter>();
-
-                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //c.IncludeXmlComments(xmlPath);
             });
 
         }
@@ -118,17 +139,22 @@ namespace RestAPIwithAuth0.API
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestAPIService");
-                c.OAuthClientId("qKIFpG5g66hlXIoyM5tr7W2jBEKx4Ji6");
-                c.OAuthClientSecret("5iAhWKrBvOwYSlmVTUnvvc4jYXbi1fr431jS0wHYPHeBatw3omyQegI8q6mauoqC");
-                c.OAuthRealm("client-realm");
-                c.OAuthAppName("EmployeesDirectory");
+         
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v2/swagger.json", "PlaceInfo Services"));
+
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestAPIService");
+            //    c.OAuthClientId("qKIFpG5g66hlXIoyM5tr7W2jBEKx4Ji6");
+            //    c.OAuthClientSecret("5iAhWKrBvOwYSlmVTUnvvc4jYXbi1fr431jS0wHYPHeBatw3omyQegI8q6mauoqC");
+            //    c.OAuthRealm("client-realm");
+            //    c.OAuthAppName("EmployeesDirectory");
 
 
-                c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
-            });
+            //    c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
+            //});
+
+
 
             app.UseHttpsRedirection();
 
@@ -136,7 +162,7 @@ namespace RestAPIwithAuth0.API
 
             app.UseAuthentication();
 
-            app.UseAuthorization();
+           app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
